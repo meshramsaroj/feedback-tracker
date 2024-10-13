@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "./styles/globals.css";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
 
 import AuthProvider from "@/context/AuthProvider";
 
@@ -34,8 +34,10 @@ export default function RootLayout({
           suppressHydrationWarning={true}
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          {children}
-          <Toaster />
+          <main className="min-h-screen">
+              {children}
+              <Toaster />
+          </main>
         </body>
       </AuthProvider>
     </html>

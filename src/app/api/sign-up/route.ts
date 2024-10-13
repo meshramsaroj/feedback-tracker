@@ -102,7 +102,7 @@ export async function POST(request: Request) {
     return Response.json(
       {
         success: false,
-        message: "Error registering user",
+        message: `Error registering user: ${error}`,
       },
       {
         status: 500,

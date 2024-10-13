@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { verifySchema } from "@/schemas/verifySchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,8 +21,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const page = () => {
+const VerifyCode = () => {
   const router = useRouter();
   const params = useParams();
   const { toast } = useToast();
@@ -38,13 +39,12 @@ const page = () => {
         code: data.code,
       });
 
-    console.log("verify submit data==", response);
 
       toast({
         title: "Verify success",
-        description:  response.data.message,
+        description: response.data.message,
       });
-      router.replace("/sign-in")
+      router.replace("/sign-in");
     } catch (error) {
       const axiosError = error as AxiosError<APIResponse>;
       const errorMessage = axiosError.response?.data.message;
@@ -57,29 +57,35 @@ const page = () => {
   };
 
   return (
-    <div>
-      <h1>Verify your account</h1>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <FormField
-            control={form.control}
-            name="code"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Enter your verification code</FormLabel>
-                <FormControl>
-                  <Input placeholder="xxxxx" {...field} />
-                </FormControl>
-               
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">Verify</Button>
-        </form>
-      </Form>
+    <div className="sign-up-page flex-center">
+      <Card>
+        <CardHeader>
+          <CardTitle>Verify your account</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="code"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Enter your verification code</FormLabel>
+                    <FormControl>
+                      <Input placeholder="xxxxx" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit">Verify</Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
     </div>
   );
 };
 
-export default page;
+export default VerifyCode;
