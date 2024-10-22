@@ -16,7 +16,6 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
@@ -30,6 +29,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Label from "@/components/Label";
 
 const SignUpPage = () => {
   const [username, setUsername] = useState("");
@@ -112,7 +112,7 @@ const SignUpPage = () => {
     <div className="sign-up-page flex-center">
       <Card>
         <CardHeader>
-          <CardTitle className="text-center">Sign Up</CardTitle>
+          <CardTitle className="text-center">Create Account</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -122,7 +122,7 @@ const SignUpPage = () => {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <Label text="Username" />
                     <FormControl>
                       <Input
                         placeholder="Enter your username"
@@ -158,7 +158,7 @@ const SignUpPage = () => {
                 name={"email"}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <Label text="Email" />
                     <FormControl>
                       <Input placeholder="Enter your email" {...field} />
                     </FormControl>
@@ -172,7 +172,7 @@ const SignUpPage = () => {
                 name={"password"}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <Label text="Password" />
                     <FormControl>
                       <Input
                         type="password"

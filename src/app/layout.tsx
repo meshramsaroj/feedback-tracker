@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import "./styles/globals.css";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/toaster";
 
 import AuthProvider from "@/context/AuthProvider";
@@ -24,20 +24,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <AuthProvider>
         <body
-          suppressHydrationWarning={true}
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          suppressHydrationWarning={true}
         >
-          <main className="min-h-screen">
-              {children}
-              <Toaster />
-          </main>
+            {children}
+            <Toaster />
         </body>
       </AuthProvider>
     </html>

@@ -6,22 +6,17 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { useSearchParams } from "next/navigation";
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2 } from "lucide-react";
 import { signIn } from "next-auth/react";
-import AuthError from "next-auth";
 import {
   Card,
   CardContent,
@@ -30,6 +25,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import Label from "@/components/Label";
 
 const SignIn = () => {
   const { toast } = useToast();
@@ -62,7 +58,7 @@ const SignIn = () => {
           variant: "destructive",
         });
 
-        router.replace(`/verify/${data.identifier}`)
+        router.replace(`/verify/${data.identifier}`);
       }
     }
 
@@ -76,21 +72,20 @@ const SignIn = () => {
     <div className="sign-in-page flex-center">
       <Card>
         <CardHeader>
-          <CardTitle className="text-center">Sign In</CardTitle>
+          <CardTitle className="text-center">Login</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
                 name={"identifier"}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email address/ Username</FormLabel>
+                    <Label text="Email address/ Username" />
                     <FormControl>
                       <Input placeholder="Enter your username" {...field} />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -101,7 +96,7 @@ const SignIn = () => {
                 name={"password"}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <Label text="Password" />
                     <FormControl>
                       <Input
                         type="password"
@@ -114,7 +109,7 @@ const SignIn = () => {
                 )}
               />
               <div className="flex justify-center">
-                <Button type="submit">Login</Button>
+                <Button type="submit">Sign In</Button>
               </div>
             </form>
           </Form>
